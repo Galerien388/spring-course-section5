@@ -6,6 +6,7 @@ import java.util.Random;
  * Created by Joël Van Eyken
  * on 24/11/2018
  */
+
 public class NumberGeneratorImpl implements NumberGenerator {
 
     //<editor-fold desc="Fiels">
@@ -16,12 +17,12 @@ public class NumberGeneratorImpl implements NumberGenerator {
     //<editor-fold desc="public methods">
     @Override
     public int next() {
-        return 0;
+        return random.nextInt(maxNumber);
     }
 
     @Override
     public int getMaxNumber() {
-        return 0;
+        return maxNumber;
     }
     //</editor-fold>
 }

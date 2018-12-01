@@ -6,9 +6,11 @@
     </appender>
 
     <logger name="com.van.eyken" level="DEBUG"/>
+    <logger name="org.springframework" level="DEBUG"/>
 
-    <root level="INFO">
+    <root level="info">
         <appender-ref ref="STDOUT"/>
     </root>
+
 
 </configuration>
