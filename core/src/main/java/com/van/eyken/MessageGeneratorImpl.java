@@ -3,6 +3,7 @@ package com.van.eyken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
@@ -10,16 +11,20 @@ import javax.annotation.PostConstruct;
  * Create by Joêl Van Eyken
  * on 01/12/2018
  */
+@Component
 public class MessageGeneratorImpl implements MessageGenerator {
 
     // == constants ==
     private static final Logger log = LoggerFactory.getLogger(MessageGeneratorImpl.class);
 
     // == fields ==
-    @Autowired
-    private Game game;
-    private int guessCount = 10 ;
+    private final Game game;
 
+    // == constructor ==
+    @Autowired
+    public MessageGeneratorImpl(Game game) {
+        this.game = game;
+    }
 
     // == init ==
     @PostConstruct
@@ -45,7 +50,7 @@ public class MessageGeneratorImpl implements MessageGenerator {
            return "You lost. The number was " + game.getNumber();
        } else if(!game.isValidNumberRange()){
             return "Invalid number range!";
-       } else if(game.getRemainingGuesses() == guessCount){
+       } else if(game.getRemainingGuesses() == game.getGuessCount()){
             return "What is your first guess?  ";
        } else {
             String direction = "lower";
@@ -54,7 +59,8 @@ public class MessageGeneratorImpl implements MessageGenerator {
                 direction = "higher";
             }
 
-            return direction + " ! You have " + game.getRemainingGuesses();
+            return direction + " ! You have " + (game.getRemainingGuesses() > 1 ? "guesses ": "guess ")
+                    + game.getRemainingGuesses() + " left";
         }
     }
 }

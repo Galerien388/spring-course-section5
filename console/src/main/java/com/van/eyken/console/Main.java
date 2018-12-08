@@ -1,8 +1,7 @@
 package com.van.eyken.console;
 
-import com.van.eyken.AppConfig;
-import com.van.eyken.MessageGenerator;
-import com.van.eyken.NumberGenerator;
+
+import com.van.eyken.config.GameConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -22,25 +21,25 @@ public class Main {
         // create context (container)
 
         ConfigurableApplicationContext context;
-        context = new AnnotationConfigApplicationContext(AppConfig.class);
+        context = new AnnotationConfigApplicationContext(GameConfig.class);
 
-        // get number generator bean from context (container)
-        NumberGenerator numberGenerator
-                = context.getBean(NumberGenerator.class);
-
-        // call method next() to get a random number
-        int number = numberGenerator.next();
-
-        // log generated number
-        log.info("number = {}", number);
-
-        // get messageGenerator bean from the context (container)
-        MessageGenerator messageGenerator
-                = context.getBean(MessageGenerator.class);
-        log.info("getMainMsg= {}", messageGenerator.getMainMessage());
-        log.info("getResultMsg= {}", messageGenerator.getResultMessage());
-
-        // close context (container)
+//        // get number generator bean from context (container)
+//        NumberGenerator numberGenerator
+//                = context.getBean(NumberGenerator.class);
+//
+//        // call method next() to get a random number
+//        int number = numberGenerator.next();
+//
+//        // log generated number
+//        log.info("number = {}", number);
+//
+//        // get messageGenerator bean from the context (container)
+//        MessageGenerator messageGenerator
+//                = context.getBean(MessageGenerator.class);
+//        log.info("getMainMsg= {}", messageGenerator.getMainMessage());
+//        log.info("getResultMsg= {}", messageGenerator.getResultMessage());
+//
+//        // close context (container)
         context.close();
 
     }
